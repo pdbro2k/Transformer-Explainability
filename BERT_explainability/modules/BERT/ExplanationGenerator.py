@@ -37,7 +37,10 @@ class Generator:
         one_hot[0, index] = 1
         one_hot_vector = one_hot
         one_hot = torch.from_numpy(one_hot).requires_grad_(True)
-        one_hot = torch.sum(one_hot.cuda() * output)
+        if torch.cuda.is_available(): # MEMO: cuda may not always be available
+            one_hot = torch.sum(one_hot.cuda() * output)
+        else:
+            one_hot = torch.sum(one_hot.cpu() * output)
 
         self.model.zero_grad()
         one_hot.backward(retain_graph=True)
@@ -70,7 +73,10 @@ class Generator:
         one_hot[0, index] = 1
         one_hot_vector = one_hot
         one_hot = torch.from_numpy(one_hot).requires_grad_(True)
-        one_hot = torch.sum(one_hot.cuda() * output)
+        if torch.cuda.is_available(): # MEMO: cuda may not always be available
+            one_hot = torch.sum(one_hot.cuda() * output)
+        else:
+            one_hot = torch.sum(one_hot.cpu() * output)
 
         self.model.zero_grad()
         one_hot.backward(retain_graph=True)
@@ -94,7 +100,10 @@ class Generator:
         one_hot[0, index] = 1
         one_hot_vector = one_hot
         one_hot = torch.from_numpy(one_hot).requires_grad_(True)
-        one_hot = torch.sum(one_hot.cuda() * output)
+        if torch.cuda.is_available(): # MEMO: cuda may not always be available
+            one_hot = torch.sum(one_hot.cuda() * output)
+        else:
+            one_hot = torch.sum(one_hot.cpu() * output)
 
         self.model.zero_grad()
         one_hot.backward(retain_graph=True)
@@ -136,7 +145,10 @@ class Generator:
         one_hot[0, index] = 1
         one_hot_vector = one_hot
         one_hot = torch.from_numpy(one_hot).requires_grad_(True)
-        one_hot = torch.sum(one_hot.cuda() * output)
+        if torch.cuda.is_available(): # MEMO: cuda may not always be available
+            one_hot = torch.sum(one_hot.cuda() * output)
+        else:
+            one_hot = torch.sum(one_hot.cpu() * output)
 
         self.model.zero_grad()
         one_hot.backward(retain_graph=True)
